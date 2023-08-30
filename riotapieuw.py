@@ -1,4 +1,3 @@
-api_key = "RGAPI-e9d09244-80d6-4261-9a6a-cfd44c827fee"
 summoner_name = input("Введите ник для анализа: ")
 summoner_url = f"https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}"
 champion_ids_file = "champion_ids.txt"
@@ -7,10 +6,9 @@ import requests
 from tabulate import tabulate
 
 headers = {
-    "X-Riot-Token": "RGAPI-fec0536a-5c54-40d6-8e6e-795509a90a47"
+    "X-Riot-Token": "RIOT API"
 }
 
-# Загружаем файл с соответствиями ID чемпионов и их ников
 champion_ids = {}
 with open(champion_ids_file, "r") as f:
     for line in f:
@@ -19,7 +17,6 @@ with open(champion_ids_file, "r") as f:
         champion_name = parts[1]
         champion_ids[champion_id] = champion_name
 
-# Получаем информацию о призывателе
 summoner_response = requests.get(summoner_url, headers=headers)
 if summoner_response.status_code == 200:
     summoner_data = summoner_response.json()
@@ -30,17 +27,14 @@ if summoner_response.status_code == 200:
     rank_url = f"https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{summoner_data['id']}"
     mastery_url = f"https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{summoner_data['id']}"
     
-    # Получаем информацию о ранге призывателя
     rank_response = requests.get(rank_url, headers=headers)
     
-    # Получаем информацию о мастерстве по чемпионам
     mastery_response = requests.get(mastery_url, headers=headers)
     
     if (
         rank_response.status_code == 200
         and mastery_response.status_code == 200
     ):
-        # Создаем строку для сохранения в файл
         stat_text = f"Ник: {summoner_name}\nУровень: {summoner_level}\n"
         
         rank_data = rank_response.json()
