@@ -1,3 +1,13 @@
+from termcolor import colored
+
+def show_start_menu():
+    print(colored("Создатель - QIYANA", "green"))
+    print(colored("LOLZ - " + colored("https://zelenka.guru/sataraitsme/", "blue"), "yellow"))
+    print(colored("TG - " + colored("t.me/sataraitsme", "magenta"), "cyan"))
+    print()
+
+show_start_menu()
+
 summoner_name = input("Введите ник для анализа: ")
 summoner_url = f"https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}"
 champion_ids_file = "champion_ids.txt"
