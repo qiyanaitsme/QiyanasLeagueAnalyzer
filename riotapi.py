@@ -8,7 +8,6 @@ def show_start_menu():
 
 show_start_menu()
 
-api_key = "Тут указываете свой RIOT API"
 summoner_name = input("Введите ник для анализа: ")
 summoner_url = f"https://ru.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}"
 champion_ids_file = "champion_ids.txt"
@@ -17,7 +16,7 @@ import requests
 from tabulate import tabulate
 
 headers = {
-    "X-Riot-Token": api_key
+    "X-Riot-Token": "здесь укажи свой рито апи"
 }
 
 champion_ids = {}
