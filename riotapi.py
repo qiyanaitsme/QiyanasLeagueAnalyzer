@@ -1,5 +1,4 @@
 from termcolor import colored
-from termcolor import colored
 
 def show_start_menu():
     print(colored("Создатель - QIYANA", "green"))
